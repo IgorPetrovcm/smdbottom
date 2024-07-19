@@ -5,9 +5,18 @@ CC=cc
 all: build/libsmdbottom.so.$(VERSION)
 
 build/libsmdbottom.so.$(VERSION): $(OBJS)
-	$(CC) $(OBJS) -shared -Wl,-soname,libsmdbottom.so.$(VERSION) -o $@
+	$(CC) $(OBJS) -shared -Wl,-soname,libsmdbottom.so -o $@
 
 build/matches.o: src/matches.c
+	$(CC) -fpic -o $@ -c $<
+
+build/fullstrs.o: src/fullstrs.c
+	$(CC) -fpic -o $@ -c $<
+
+build/stdfds.o: src/stdfds.c
+	$(CC) -fpic -o $@ -c $<
+
+build/procaproc.o: src/procaproc.c
 	$(CC) -fpic -o $@ -c $<
 
 install: all
