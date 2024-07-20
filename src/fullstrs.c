@@ -3,7 +3,7 @@
 # include <stdarg.h>
 # include <string.h>
 
-int bufferadder(char* buffer, int count, ...)
+int lbufferadder(char* buffer, int count, ...)
 {
     errno = 0;
     int errNum;
@@ -27,4 +27,21 @@ int bufferadder(char* buffer, int count, ...)
     }
 
     return 0;
+}
+
+char* qlastchars(char* src, char delimiter)
+{
+    int i;
+    for (i = strlen(src) - 1; i > -1; i++){
+        if (*(src + i) == delimiter){
+            break;
+        }
+    }
+
+    if (*(src + i) == delimiter){
+        return src + i + 1;
+    }
+    else {
+        return NULL;
+    }
 }
