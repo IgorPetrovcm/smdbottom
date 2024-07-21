@@ -2,6 +2,8 @@ include config.mk
 
 CC=cc
 
+.PHONY: all install clean remove
+
 all: build/libsmdbottom.so.$(VERSION)
 
 build/libsmdbottom.so.$(VERSION): $(OBJS)
@@ -25,5 +27,7 @@ install: all
 
 clean:
 	rm -f $(OBJS) build/libsmdbottom.so.$(VERSION)
+
+remove: 
 	sudo rm -f $(PREFIX)/lib/libsmdbottom.so $(PREFIX)/lib/libsmdbottom.so.$(VERSION)
 	sudo rm -rf $(PREFIX)/include/smdbottom
